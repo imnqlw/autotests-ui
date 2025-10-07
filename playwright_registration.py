@@ -7,24 +7,29 @@ name = 'username'
 password = 'password'
 
 
+# Открываем браузер с использованием Playwright
 with sync_playwright() as playwright:
+    # Запускаем Chromium браузер в обычном режиме (не headless)
     browser = playwright.chromium.launch(headless=False)
-    page = browser.new_page()
+    # Создаем новый контекст браузера (новая сессия, которая изолирована от других)
+    context = browser.new_context()
+    # Открываем новую страницу в рамках контекста
+    page = context.new_page()
 
-    page.goto(url)
+    page.goto("https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration")
 
-    email_input = page.get_by_test_id("registration-form-email-input").locator('input')
-    email_input.fill(email)
+    email_input = page.get_by_test_id('registration-form-email-input').locator('input')
+    email_input.fill('user.name@gmail.com')
 
-    username_input = page.get_by_test_id("registration-form-username-input").locator('input')
-    username_input.fill(name)
+    username_input = page.get_by_test_id('registration-form-username-input').locator('input')
+    username_input.fill('username')
 
-    password_input = page.get_by_test_id("registration-form-password-input").locator('input')
-    password_input.fill(password)
+    password_input = page.get_by_test_id('registration-form-password-input').locator('input')
+    password_input.fill('password')
 
-    registration_button = page.get_by_test_id("registration-page-registration-button")
+    registration_button = page.get_by_test_id('registration-page-registration-button')
     registration_button.click()
 
-    dashboard_title = page.get_by_test_id("dashboard-toolbar-title-text")
-    expect(dashboard_title).to_be_visible()
-    expect(dashboard_title).to_have_text('Dashboard')
+    # Сохраняем состояние браузера (куки и localStorage) в файл для дальнейшего использования
+    context.storage_state(path="browser-state.json")
+

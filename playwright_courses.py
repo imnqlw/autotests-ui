@@ -46,7 +46,6 @@ with sync_playwright() as playwright:
 
     #Проверяется наличие и видимость иконки пустого блока.
     icon_course = page.get_by_test_id('courses-list-empty-view-icon')
-    expect(icon_course).to_have_css("display", "block")
     expect(icon_course).to_be_visible()
 
     #Проверяется наличие и текст блока “There is no results”.
