@@ -18,11 +18,11 @@ with sync_playwright() as playwright:
     password_input.fill("password")
 
     # Находим кнопку "Login" и кликаем на нее
-    login_button = page.locator('//button[@data-testid="login-page-login-button"]')
+    login_button = page.locator('//button[@data-testid="login-pages-login-button"]')
     login_button.click()
 
     # Проверяем, что появилось сообщение об ошибке
-    wrong_email_or_password_alert = page.locator('//div[@data-testid="login-page-wrong-email-or-password-alert"]')
+    wrong_email_or_password_alert = page.locator('//div[@data-testid="login-pages-wrong-email-or-password-alert"]')
     expect(wrong_email_or_password_alert).to_be_visible()  # Проверяем видимость элемента
     expect(wrong_email_or_password_alert).to_have_text("Wrong email or password")  # Проверяем текст
 

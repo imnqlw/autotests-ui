@@ -12,11 +12,11 @@ with sync_playwright() as playwright:
     )
 
     # Пытаемся проверить, что несуществующий локатор виден на странице
-    # unknown = page.locator('#unknown')
+    # unknown = pages.locator('#unknown')
     # expect(unknown).to_be_visible()
 
     # Пытаемся ввести текст в кнопку Login
-    # login_button = page.get_by_test_id('login-page-login-button')
+    # login_button = pages.get_by_test_id('login-pages-login-button')
     # login_button.fill('unknown')
 
     # Пытаемся изменить текст заголовка

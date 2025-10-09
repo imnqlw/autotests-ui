@@ -25,7 +25,7 @@ with sync_playwright() as playwright:
     password_input = page.get_by_test_id('registration-form-password-input').locator('input')
     password_input.fill('password')
 
-    registration_button = page.get_by_test_id('registration-page-registration-button')
+    registration_button = page.get_by_test_id('registration-pages-registration-button')
     registration_button.click()
 
     #После успешного перехода сохраняет состояние браузера (storage state) в файл.

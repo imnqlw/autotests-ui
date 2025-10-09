@@ -13,7 +13,7 @@ with sync_playwright() as playwright:
     page.goto(url)
 
     #Скрипт проверяет, что кнопка Registration изначально находится в состоянии disabled.
-    registration_button = page.get_by_test_id("registration-page-registration-button")
+    registration_button = page.get_by_test_id("registration-pages-registration-button")
     expect(registration_button).to_be_disabled()
 
     #Скрипт заполняет поля формы: Email, Username, Password.
