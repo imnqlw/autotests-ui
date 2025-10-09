@@ -1,5 +1,5 @@
 import pytest
-from playwright.sync_api import sync_playwright, expect
+from playwright.sync_api import expect
 import pytest
 
 url_registration = 'https://nikita-filonov.github.io/qa-automation-engineer-ui-course/#/auth/registration'
