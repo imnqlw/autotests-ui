@@ -1,6 +1,8 @@
 from playwright.sync_api import Page, expect
 
 from components.authentication.registration_form_component import RegistrationFormComponent
+from elements.button import Button
+from elements.input import Input
 from pages.base_page import BasePage
 
 
@@ -10,13 +12,13 @@ class RegistrationPage(BasePage):
 
         self.registration_form = RegistrationFormComponent(page)
 
-        self.email_input = page.get_by_test_id('registration-form-email-input').locator('input')
-        self.username_input = page.get_by_test_id('registration-form-username-input').locator('input')
-        self.password_input = page.get_by_test_id('registration-form-password-input').locator('input')
-        self.registration_button = page.get_by_test_id('registration-page-registration-button')
+        self.email_input = Input(page, 'registration-form-email-input', 'email')
+        self.username_input = Input(page, 'registration-form-username-input', 'username')
+        self.password_input = Input(page, 'registration-form-password-input', 'password')
+        self.registration_button = Button(page, 'registration-page-registration-button', 'registration-button')
 
 
 
     def click_registration_button(self):
-        expect(self.registration_button).to_be_enabled()
+        self.registration_button.check_enabled()
         self.registration_button.click()

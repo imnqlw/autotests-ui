@@ -48,7 +48,7 @@ class CreateCoursePage(BasePage):
 
 
     def check_visible_exercises_empty_view(self):
-        self.exercises_empty_view.check_visible(
-            title='There is no exercises',
-            description='Click on "Create exercise" button to create new exercise'
+        self.exercises_empty_view.check_visible('create-course-exercises',
+            'There is no exercises',
+            'Click on "Create exercise" button to create new exercise'
         )

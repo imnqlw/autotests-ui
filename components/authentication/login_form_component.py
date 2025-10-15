@@ -1,22 +1,27 @@
 from playwright.sync_api import Page, expect
 
 from components.base_component import BaseComponent
+from elements.button import Button
+from elements.input import Input
+
 
 
 class LoginFormComponent(BaseComponent):
     def __init__(self, page: Page):
         super().__init__(page)
 
-        self.email_input = page.get_by_test_id('login-form-email-input').locator('input')
-        self.password_input = page.get_by_test_id('login-form-password-input').locator('input')
-        self.login_button = page.get_by_test_id('login-page-login-button')
-
+        self.email_input = Input(page, 'login-form-email-input', 'email')
+        self.password_input = Input(page,'login-form-password-input', 'password')
+        self.login_button = Button(page, 'login-page-login-button', 'login')
 
     def fill(self, email: str, password: str):
         self.email_input.fill(email)
         self.password_input.fill(password)
 
-
     def check_visible(self, email, password):
-        expect(self.password_input).to_have_value(password)
-        expect(self.email_input).to_have_value(email)
+        self.password_input.check_have_value(password)
+        self.email_input.check_have_value(email)
+
+
+
+
